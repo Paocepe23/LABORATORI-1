@@ -31,6 +31,8 @@ En el segundo enfoque, Método B, se utilizaron funciones estadísticas provista
 
 En esta etapa se adquirió una señal ECG analógica utilizando un módulo AD8232 y una placa ESP32 Dev Kit. La ESP32 fue configurada para muestrear la señal a una frecuencia de 360 Hz, empleando un canal ADC con resolución de 12 bits. La placa se encargó exclusivamente de la adquisición de la señal y de la transmisión de los valores del convertidor analógico-digital a través de comunicación serial.
 
+Para la adquisición del ECG analógico se utilizó un código dedicado programado en Arduino IDE, ejecutado directamente en la ESP32, el cual se encargó de leer el valor del ADC desde el pin GPIO13 (ADC2_4), mantener una frecuencia de muestreo constante de 360 Hz y enviar los valores digitalizados por el puerto serial. Este código operó conjuntamente con el driver del módulo AD8232, permitiendo la correcta captura de la señal cardíaca.
+
 Un único script en Python se encargó de establecer la comunicación serial con la ESP32, recibir los datos adquiridos, almacenarlos y realizar tanto el procesamiento estadístico como el análisis posterior del efecto del ruido sobre la señal.
 
 Dentro de este mismo código se integraron las rutinas correspondientes a la Parte B (adquisición y caracterización estadística de la señal) y a la Parte C (contaminación con distintos tipos de ruido y cálculo de la Relación Señal-Ruido, SNR), garantizando coherencia en el manejo de los datos y evitando la duplicación de procesos.
